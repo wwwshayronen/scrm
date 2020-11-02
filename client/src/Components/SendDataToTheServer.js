@@ -3,7 +3,7 @@ import React from "react";
 const SendDataToServer = (props) => {
     console.log(props.customer[props.customer.length - 1], "propsss")
   async function postData() {
-    const url = "http://localhost:5000/api/customers/";
+    const url = "https://mern-stack-scrm.herokuapp.com/api/customers";
     const response = await fetch(url, {
       method: "POST",
       headers: {
