@@ -54,7 +54,7 @@ const TableOfCustomers = () => {
   const [revenue, setRevenue] = useState();
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:5000/api/customers")
+      await fetch("/api/customers")
         .then((res) => res.json())
         .then((data) => setCustomers(data));
     }
@@ -87,7 +87,7 @@ const TableOfCustomers = () => {
   const handleDeleteGoal = async (customerID) => {
     console.log("cust id: ", customerID);
     try {
-      await fetch(`http://localhost:5000/api/customers/delete/${customerID}`, {
+      await fetch(`/api/customers/delete/${customerID}`, {
         method: "DELETE",
       });
       console.log(`the goal with customerID of: ${customerID}, was deleted!`);
