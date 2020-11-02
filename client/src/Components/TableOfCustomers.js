@@ -87,7 +87,7 @@ const TableOfCustomers = () => {
   const handleDeleteGoal = async (customerID) => {
     console.log("cust id: ", customerID);
     try {
-      await fetch(`http://localhost:5000/api/customers/delete/${customerID}`, {
+      await fetch(`https://mern-stack-scrm.herokuapp.com/api/customers/delete/${customerID}`, {
         method: "DELETE",
       });
       console.log(`the goal with customerID of: ${customerID}, was deleted!`);
