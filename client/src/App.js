@@ -31,14 +31,14 @@ export default function App() {
               }}
             />
           ) : isAuthenticated ? (
-            <Redirect to="/profile" />
+            <Redirect to="/#profile" />
           ) : (
             <HomePage />
           )}
         </Route>
 
         <Route exact path="/" component={HomePage} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/#profile" component={Profile} />
       </Switch>
     </Router>
   );
