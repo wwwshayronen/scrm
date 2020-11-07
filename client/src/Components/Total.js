@@ -1,4 +1,3 @@
-import { List, Typography, Divider } from "antd";
 import React from "react";
 
 const Total = ({ report }) => {
@@ -21,8 +20,7 @@ const Total = ({ report }) => {
   }, {});
 
   const keys = Object.keys(groupByDate);
-  console.log("keys:", keys);
-  console.log("group:", groupByDate);
+
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -30,7 +28,6 @@ const Total = ({ report }) => {
     console.log(groupByDate[key].map((x) => x).reduce(reducer))
   );
 
-  console.log("revenue:", revenue);
 
   return (
     <>
@@ -51,3 +48,4 @@ const Total = ({ report }) => {
 };
 
 export default Total;
+
