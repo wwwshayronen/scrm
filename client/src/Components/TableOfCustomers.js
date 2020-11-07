@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Tag, Space } from "antd";
 
-import Total from './Total'
+import Total from "./Total";
 
 const TableOfCustomers = () => {
   const columns = [
@@ -40,7 +40,12 @@ const TableOfCustomers = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a onClick={() => handleDeleteGoal(record._id)}>Delete {record.name}</a>
+          <a
+            style={{ color: "#1877f2" }}
+            onClick={() => handleDeleteCustomer(record._id)}
+          >
+            Delete {record.name}
+          </a>
         </Space>
       ),
     },
@@ -50,11 +55,9 @@ const TableOfCustomers = () => {
   const [color, setColor] = useState("green");
   const [status, setStatus] = useState("פעיל");
   const [loading, setLoading] = useState(true);
-  const [formattedDate, setFormattedDate] = useState("");
-  const [revenue, setRevenue] = useState();
   useEffect(() => {
     async function fetchData() {
-      await fetch("/api/customers")
+      await fetch("http://localhost:5000/api/customers")
         .then((res) => res.json())
         .then((data) => setCustomers(data));
     }
@@ -80,30 +83,34 @@ const TableOfCustomers = () => {
     <h1>no content</h1>
   );
 
-  useEffect(() => {
-    handleDeleteGoal();
-  });
-
-  const handleDeleteGoal = async (customerID) => {
+  const handleDeleteCustomer = async (customerID) => {
     console.log("cust id: ", customerID);
     try {
-      await fetch(`/api/customers/delete/${customerID}`, {
+      await fetch(`http://localhost:5000/api/customers/delete/${customerID}`, {
         method: "DELETE",
       });
-      console.log(`the goal with customerID of: ${customerID}, was deleted!`);
     } catch (error) {
-      console.log("error:", error);
     }
+
+    deleteCustomerFromDOM(customerID);
   };
 
+  const deleteCustomerFromDOM = (id) => {
+    const filteredCustomers = customers.filter(
+      (customer) => customer._id !== id
+    );
+    setCustomers(filteredCustomers);
+  };
 
   return (
     <>
       <Table
         columns={columns}
         dataSource={customers}
+        style={{ marginTop: "3rem" }}
       />
-      <h1>רווחים לפי חודשים</h1><Total report={customers} />
+      <h1>רווחים לפי חודשים</h1>
+      <Total report={customers} />
       <div></div>
     </>
   );
