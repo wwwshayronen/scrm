@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ModalForCopy from "./ModalForCopy";
 import SendDataToTheServer from "./SendDataToTheServer";
-import { Input, Form, Button } from "antd";
+import { Input, Button } from "antd";
 
 const dateObj = Date.now();
 
@@ -67,9 +67,16 @@ const AddCustomer = () => {
   }
   return (
     <>
-      <div style={{            display: "flex",
-            justifyContent: "center",
-            alignItems: "center", border: "1px solid #f0f0f0", maxWidth:"500px", margin: "0 auto" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          border: "1px solid #f0f0f0",
+          maxWidth: "500px",
+          margin: "0 auto",
+        }}
+      >
         <form
           onSubmit={handleSubmitEvent}
           style={{
@@ -77,6 +84,7 @@ const AddCustomer = () => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
+            marginTop: "4rem",
           }}
         >
           <label htmlFor="name">שם:</label>
@@ -107,14 +115,14 @@ const AddCustomer = () => {
             onChange={(e) => setרחוב(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר_בית:</label>
+          <label htmlFor="name">מספר בית:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_בית}
             onChange={(e) => setמספר_בית(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר_דירה:</label>
+          <label htmlFor="name">מספרדירה:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_דירה}
@@ -164,7 +172,7 @@ const AddCustomer = () => {
               רגיל - 12.5 ש''ח - 100GB
             </option>
           </select>
-          <label htmlFor="name">מספר_אשראי:</label>
+          <label htmlFor="name">מספר אשראי:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_אשראי}
@@ -178,14 +186,14 @@ const AddCustomer = () => {
             onChange={(e) => setתפוגה(e.target.value)}
             required
           />
-          <label htmlFor="name">שלוש_ספרות:</label>
+          <label htmlFor="name">שלוש ספרות:</label>
           <Input
             style={{ width: "230px" }}
             value={שלוש_ספרות}
             onChange={(e) => setשלוש_ספרות(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר_טלפון_ליצירת_קשר:</label>
+          <label htmlFor="name">מספר טלפון ליצירת קשר:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_טלפון_ליצירת_קשר}
@@ -203,9 +211,9 @@ const AddCustomer = () => {
           <Input
             style={{
               width: "230px",
-              border: "black 3px solid",
+              border: "#6c63ff 1px solid",
               fontWeight: "bold",
-              color: "green",
+              color: "#6c63ff",
               marginTop: "1rem",
             }}
             type="submit"
@@ -223,3 +231,4 @@ const AddCustomer = () => {
 };
 
 export default AddCustomer;
+
