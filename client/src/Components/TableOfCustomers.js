@@ -107,7 +107,7 @@ const TableOfCustomers = () => {
       <Table
         columns={columns}
         dataSource={customers}
-        style={{ marginTop: "3rem" }}
+        style={{ marginTop: "3rem", width:"100%" }}
       />
       <h1>רווחים לפי חודשים</h1>
       <Total report={customers} />
