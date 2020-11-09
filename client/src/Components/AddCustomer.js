@@ -17,7 +17,7 @@ const AddCustomer = () => {
   const [חבילה, setחבילה] = useState("25 ש''ח - 100GB");
   const [מספר_אשראי, setמספר_אשראי] = useState();
   const [תפוגה, setתפוגה] = useState();
-  const [שלוש_ספרות, setשלוש_ספרות] = useState();
+  const [threeNumsOfCreditCard, setThreeNumsOfCreditCard] = useState();
   const [מספר_טלפון_ליצירת_קשר, setמספר_טלפון_ליצירת_קשר] = useState();
   const [show, setShow] = useState(false);
   const [numberOfLines, setNumberOfLines] = useState();
@@ -56,7 +56,7 @@ const AddCustomer = () => {
         חבילה: חבילה,
         מספר_אשראי: מספר_אשראי,
         תפוגה: תפוגה,
-        שלוש_ספרות: שלוש_ספרות,
+        threeNumsOfCreditCard: threeNumsOfCreditCard,
         מספר_טלפון_ליצירת_קשר: מספר_טלפון_ליצירת_קשר,
         revenue: revenue,
         numberOfLines: numberOfLines,
@@ -189,8 +189,8 @@ const AddCustomer = () => {
           <label htmlFor="three nums of credit card">שלוש ספרות:</label>
           <Input
             style={{ width: "230px" }}
-            value={שלוש_ספרות}
-            onChange={(e) => setשלוש_ספרות(e.target.value)}
+            value={threeNumsOfCreditCard}
+            onChange={(e) => setThreeNumsOfCreditCard(e.target.value)}
             required
           />
           <label htmlFor="phone">מספר טלפון ליצירת קשר:</label>
