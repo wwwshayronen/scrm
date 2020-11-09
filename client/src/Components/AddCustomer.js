@@ -207,6 +207,7 @@ const AddCustomer = () => {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+required
           />
           <Input
             style={{
