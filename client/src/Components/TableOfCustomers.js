@@ -57,7 +57,7 @@ const TableOfCustomers = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:5000/api/customers")
+      await fetch("api/customers")
         .then((res) => res.json())
         .then((data) => setCustomers(data));
     }
@@ -86,7 +86,7 @@ const TableOfCustomers = () => {
   const handleDeleteCustomer = async (customerID) => {
     console.log("cust id: ", customerID);
     try {
-      await fetch(`http://localhost:5000/api/customers/delete/${customerID}`, {
+      await fetch(`api/customers/delete/${customerID}`, {
         method: "DELETE",
       });
     } catch (error) {
