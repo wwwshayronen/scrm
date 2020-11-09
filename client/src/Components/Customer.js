@@ -16,7 +16,7 @@ const Customer = ({ details }) => {
       <li>חבילה: {details.חבילה}</li>
       <li>מספר אשראי: {details.מספר_אשראי}</li>
       <li>תפוגה: {details.תפוגה}</li>
-      <li>שלוש ספרות: {details.שם}</li>
+      <li>שלוש ספרות: {details.threeNumsOfCreditCard}</li>
       <li>מספר טלפון ליצירת קשר: {details.מספר_טלפון_ליצירת_קשר}</li>
     </>
   );
