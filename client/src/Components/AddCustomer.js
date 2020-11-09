@@ -94,42 +94,42 @@ const AddCustomer = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <label htmlFor="name">תז:</label>
+          <label htmlFor="ID">תז:</label>
           <Input
             style={{ width: "230px" }}
             value={תז}
             onChange={(e) => setתז(e.target.value)}
             required
           />
-          <label htmlFor="name">עיר:</label>
+          <label htmlFor="CITY">עיר:</label>
           <Input
             style={{ width: "230px" }}
             value={עיר}
             onChange={(e) => setעיר(e.target.value)}
             required
           />
-          <label htmlFor="name">רחוב:</label>
+          <label htmlFor="STREET">רחוב:</label>
           <Input
             style={{ width: "230px" }}
             value={רחוב}
             onChange={(e) => setרחוב(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר בית:</label>
+          <label htmlFor="HOUSE-NUM">מספר בית:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_בית}
             onChange={(e) => setמספר_בית(e.target.value)}
             required
           />
-          <label htmlFor="name">מספרדירה:</label>
+          <label htmlFor="APARTMENT-NUM">מספר דירה:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_דירה}
             onChange={(e) => setמספר_דירה(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר קווים:</label>
+          <label htmlFor="NUMS-OF-LINES">מספר קווים:</label>
           <Input
             style={{ width: "230px" }}
             value={numberOfLines}
@@ -137,7 +137,7 @@ const AddCustomer = () => {
             onChange={(e) => setNumberOfLines(e.target.value)}
             required
           />
-          <label htmlFor="name">רווח:</label>
+          <label htmlFor="PROFIT">רווח:</label>
           <Input
             style={{ width: "230px" }}
             value={revenue}
@@ -145,7 +145,7 @@ const AddCustomer = () => {
             onChange={(e) => setRevenue(e.target.value)}
             required
           />
-          <label htmlFor="name">חבילה:</label>
+          <label htmlFor="PACKAGE">חבילה:</label>
           <select
             style={{ width: "230px" }}
             value={חבילה}
@@ -172,28 +172,28 @@ const AddCustomer = () => {
               רגיל - 12.5 ש''ח - 100GB
             </option>
           </select>
-          <label htmlFor="name">מספר אשראי:</label>
+          <label htmlFor="CREDIT-CARD">מספר אשראי:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_אשראי}
             onChange={(e) => setמספר_אשראי(e.target.value)}
             required
           />
-          <label htmlFor="name">תפוגה:</label>
+          <label htmlFor="Out of date">תפוגה:</label>
           <Input
             style={{ width: "230px" }}
             value={תפוגה}
             onChange={(e) => setתפוגה(e.target.value)}
             required
           />
-          <label htmlFor="name">שלוש ספרות:</label>
+          <label htmlFor="three nums of credit card">שלוש ספרות:</label>
           <Input
             style={{ width: "230px" }}
             value={שלוש_ספרות}
             onChange={(e) => setשלוש_ספרות(e.target.value)}
             required
           />
-          <label htmlFor="name">מספר טלפון ליצירת קשר:</label>
+          <label htmlFor="phone">מספר טלפון ליצירת קשר:</label>
           <Input
             style={{ width: "230px" }}
             value={מספר_טלפון_ליצירת_קשר}
@@ -201,7 +201,7 @@ const AddCustomer = () => {
             required
           />
 
-          <label htmlFor="name">תאריך:</label>
+          <label htmlFor="date">תאריך:</label>
           <Input
             style={{ width: "230px" }}
             type="date"
