@@ -33,7 +33,7 @@ const AddCustomer = () => {
     setרחוב("");
     setתז("");
     setתפוגה("");
-    setשלוש_ספרות("");
+    setThreeNumsOfCreditCard("");
     setמספר_בית("");
     setמספר_דירה("");
     setNumberOfLines("");
