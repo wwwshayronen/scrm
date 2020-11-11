@@ -30,9 +30,10 @@ mongoose
 app.use("/api/customers", customers);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-})
+app.get('*', function (req, res) {
+  const index = path.join(__dirname, 'build', 'index.html');
+  res.sendFile(index);
+});
 
 const PORT = process.env.PORT || 5000;
 
