@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // connect to mongodb
 mongoose
   .connect(
-    mongodb+srv://shay:<tvi6ppHXWUnLT98>@monez-cluster.dvbt7.mongodb.net/<dbname>?retryWrites=true&w=majority,
+    mongodb+srv://shay:<tvi6ppHXWUnLT98>@monez-cluster.dvbt7.mongodb.net/<Monez-Cluster>?retryWrites=true&w=majority,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("MongoDB connected"))
