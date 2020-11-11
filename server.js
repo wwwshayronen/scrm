@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 // connect to mongodb
 mongoose
   .connect(
-    mongodb+srv://shay:<tvi6ppHXWUnLT98>@monez-cluster.dvbt7.mongodb.net/<Monez-Cluster>?retryWrites=true&w=majority,
+    process.env.MONGODB_URI ||
+      "mongodb://localhost:27017/scrm?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("MongoDB connected"))
@@ -29,10 +30,6 @@ mongoose
 app.use("/api/customers", customers);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
-app.get('*', function (req, res) {
-  const index = path.join(__dirname, 'build', 'index.html');
-  res.sendFile(index);
-});
 
 const PORT = process.env.PORT || 5000;
 
