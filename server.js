@@ -30,6 +30,14 @@ app.use("/api/customers", customers);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client/build'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));
