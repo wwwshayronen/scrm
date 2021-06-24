@@ -17,8 +17,7 @@ app.use(bodyParser.json());
 // connect to mongodb
 mongoose
   .connect(
-    process.env.MONGODB_URI ||
-      "mongodb://localhost:27017/scrm?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
+    "mongodb+srv://shay:KAngejFqBzQOFXeP@monez-cluster.dvbt7.mongodb.net/test-db?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("MongoDB connected"))
