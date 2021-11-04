@@ -6,11 +6,11 @@ const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
 
-const { DB_URI } = require("./secret_keys");
+// const { DB_URI } = require("./secret_keys");
 
-let setDBUri = process.env.URI || DB_URI;
+let setDBUri = process.env.URI;
 // enable all cors requests
-app.use(cors({origin: "http://localhost:3000"}));
+app.use(cors({ origin: "http://localhost:3000" }));
 
 const customers = require("./api/routes/customers");
 const leads = require("./api/routes/leads");
@@ -31,7 +31,7 @@ mongoose
 
 // use routes
 app.use("/api/customers", customers);
-app.use("/api/leads", leads)
+app.use("/api/leads", leads);
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
