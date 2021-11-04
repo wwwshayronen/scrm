@@ -1,5 +1,10 @@
+import { message, Button } from 'antd';
 const API_URL = "http://localhost:5000";
 const headers = { "Content-Type": "application/json" };
+
+const info = () => {
+  message.info('Lead deleted');
+};
 
 const add = (data) =>
   fetch(`${API_URL}/api/leads/add`, {
@@ -10,10 +15,16 @@ const add = (data) =>
 
 const getData = (routeName) => fetch(`${API_URL}/${routeName}`);
 
-const editLead = (lead, routeName) => fetch(`${API_URL}/${routeName}`, {
-  method: "PUT",
-  headers,
-  body: JSON.stringify(lead),
-});
+const editLead = (lead, routeName) =>
+  fetch(`${API_URL}/${routeName}`, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(lead),
+  });
 
-export { add, getData, editLead };
+const deleteLead = (cardId) => {
+  fetch((`${API_URL}/api/leads/delete/${cardId}`), {method: 'DELETE'})
+      .then(() => info())
+};
+
+export { add, getData, editLead, deleteLead };
