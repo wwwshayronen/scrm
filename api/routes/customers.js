@@ -5,6 +5,7 @@ const router = express.Router();
 const Customer = require("../../models/Customer");
 
 // route GET api/customers
+
 // get all customers deals
 router.get("/", (req, res) => {
   Customer.find()
@@ -13,16 +14,17 @@ router.get("/", (req, res) => {
 });
 
 // route post api/customers
-// save new goal to DB
+// save new customer to DB
 router.post("/", (req, res) => {
   try {
     console.log("request was received by the server:", req.body);
     const newCustomer = new Customer({
-      name: req.body.name,
-      packageType: req.body.packageType,
-      numberOfLines: req.body.numberOfLines,
-      customerID: req.body.customerID,
-      revenue: req.body.revenue,
+      customerName: req.body.customerName,
+      phoneNumber: req.body.phoneNumber,
+      emailAdress: req.body.emailAdress,
+      productDescription: req.body.productDescription,
+      productPrice: req.body.productPrice,
+      quantity: req.body.quantity,
       date: req.body.date,
       userID: req.body.userID,
     });
@@ -34,10 +36,9 @@ router.post("/", (req, res) => {
   }
 });
 
-// route delete api/customers
+// route delete api/customers/id
 // delete customer
 router.delete("/delete/:id", (req, res) => {
-  console.log("request for deleting obj:", req.params)
   Customer.findById(req.params.id).then((customer) =>
     customer.remove().then(() => {
       res

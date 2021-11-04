@@ -3,31 +3,35 @@ const Schema = mongoose.Schema;
 
 // Create Customer Schema
 const CustomerSchema = new Schema({
-  name: {
+  customerName: {
     type: String,
     require: true,
   },
-  packageType: {
+  phoneNumber: {
+    type: String,
+    require: false,
+  },
+  emailAdress: {
+    type: String,
+    require: false,
+  },
+  productDescription: {
     type: String,
     require: true,
   },
-  numberOfLines: {
+  productPrice: {
     type: Number,
     require: true,
   },
-  revenue: {
+  quantity: {
     type: Number,
-    require: true,
-  },
-  customerID: {
-    type: Number,
-    require: true,
-  },
-  userID: {
-    type: String,
     require: true,
   },
   date: {
+    type: String,
+    require: true,
+  },
+  userID: {
     type: String,
     require: true,
   },

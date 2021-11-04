@@ -1,22 +1,24 @@
 import React from "react";
 
 const SendDataToServer = (props) => {
-    console.log(props.customer[props.customer.length - 1], "propsss")
+  console.log(props.customer[props.customer.length - 1], "propsss");
   async function postData() {
-    const url = "https://mern-stack-scrm.herokuapp.com/api/customers";
+    const url = "http://localhost:5000/api/customers";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: props.customer[props.customer.length - 1].שם,
-        packageType: props.customer[props.customer.length - 1].חבילה,
-        numberOfLines: props.customer[props.customer.length - 1].numberOfLines,
-        revenue: props.customer[props.customer.length - 1].revenue,
-        customerID: props.customer[props.customer.length - 1].תז,
-        userID: props.customer[props.customer.length - 1].id,
+        customerName: props.customer[props.customer.length - 1].customerName,
+        phoneNumber: props.customer[props.customer.length - 1].phoneNumber,
+        emailAdress: props.customer[props.customer.length - 1].emailAdress,
+        productDescription:
+          props.customer[props.customer.length - 1].productDescription,
+        productPrice: props.customer[props.customer.length - 1].productPrice,
+        quantity: props.customer[props.customer.length - 1].quantity,
         date: props.customer[props.customer.length - 1].date,
+        userID: props.customer[props.customer.length - 1].id,
       }),
     });
     // console.log("res:", response.json());
@@ -25,10 +27,7 @@ const SendDataToServer = (props) => {
 
   postData();
 
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default SendDataToServer;

@@ -1,74 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import AddCustomer from "./AddCustomer";
-import { Redirect } from "react-router-dom";
 import TableOfCustomers from "./TableOfCustomers";
-import { Button } from "antd";
+import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import LedasBoard from "./UI/Profile-page/LedasBoard";
 
-const Profile = () => {
-  const [displayForm, setDisplayForm] = useState(false);
-  const [displayTable, setDisplayTable] = useState(false);
-  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+const Profile = ({ displayForm, displayTable, displayProfileHomePage }) => {
+  // const [displayForm, setDisplayForm] = useState(false);
+  // const [displayTable, setDisplayTable] = useState(false);
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const location = useLocation();
+
+  const removeAllCharsAtSing = () => {
+    const atSign = `@`;
+    const removeChars = user.name.split(atSign, 1)[0] || "";
+
+    return `Hey ${removeChars || ""} 👋`;
+  };
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
 
-  function handelDisplayForm() {
-    if (!displayForm) {
-      setDisplayTable(false);
-      setDisplayForm(true);
-    } else {
-      setDisplayForm(false);
-    }
-  }
-
-  function handelDisplayTable() {
-    if (!displayTable) {
-      setDisplayForm(false);
-      setDisplayTable(true);
-    } else {
-      setDisplayTable(false);
-    }
-  }
+  console.log("location.pathname: ", location.pathname);
 
   return (
     isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <Button
-          style={{ color: "red" }}
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Log Out
-        </Button>
-
-        {displayForm ? (
-          <AddCustomer />
-        ) : (
-          <Button
-            onClick={handelDisplayForm}
-            style={{position:"absolute", top:"25px", left:"0", right: "170px", width: "120px"  }}
-          >
-            הוסף לקוח
-          </Button>
+      <div style={{ minHeight: "100vh" }}>
+        {location.pathname === "/profile" && (
+          <>
+            <h2>{removeAllCharsAtSing()}</h2>
+            <RecentActivity>
+              <h3>Leads:</h3>
+              <LedasBoard user={user}/>
+            </RecentActivity>
+          </>
         )}
-
-        {displayTable ? (
-          <TableOfCustomers />
-        ) : (
-          <Button
-            onClick={handelDisplayTable}
-            style={{position:"absolute", top:"55px", left:"0", right: "170px",width: "120px"  }}
-          >
-            הלקוחות שלי
-          </Button>
-        )}
+        {location.pathname === "/profile/add" && <AddCustomer />}
+        {location.pathname === "/profile/my-customers" && <TableOfCustomers />}
       </div>
     )
   );
 };
 
 export default Profile;
+
+const RecentActivity = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;

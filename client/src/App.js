@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined } from "@ant-design/icons";
-
-import HomePage from "./Components/HomePage";
-import Profile from "./Components/Profile";
+import LayoutComponent from "./Components/UI/Layout";
+import ProfileLayout from "./Components/UI/ProfileLayout";
+import AddCustomer from "./Components/AddCustomer";
+import TableOfCustomers from "./Components/TableOfCustomers";
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();
-  
+
   return (
     <Router>
       <Switch>
@@ -33,12 +34,15 @@ export default function App() {
           ) : isAuthenticated ? (
             <Redirect to="/profile" />
           ) : (
-            <HomePage />
+            <LayoutComponent />
           )}
         </Route>
 
-        <Route exact path="/" component={HomePage} />
-        <Route path="/profile" component={Profile} />
+        <Route exact path="/" component={LayoutComponent} />
+        <Route path="/profile" component={ProfileLayout} />
+        <Route path="/profile/add" component={AddCustomer} />
+        <Route path="/profile/my-customers" component={TableOfCustomers} />
+
       </Switch>
     </Router>
   );
