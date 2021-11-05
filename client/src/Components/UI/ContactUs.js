@@ -2,6 +2,11 @@ import React, { useRef } from "react";
 import { message, Input } from "antd";
 import styled from "styled-components";
 import emailjs from "emailjs-com";
+import {
+  REACT_APP_EMAIL_SERVICE_ID,
+  REACT_APP_EMAIL_TEMPLATE_ID,
+  REACT_APP_EMAIL_USER_ID,
+} from "../../keys";
 require("dotenv").config();
 
 export const ContactUs = () => {
@@ -20,10 +25,10 @@ export const ContactUs = () => {
 
     emailjs
       .sendForm(
-        process.env.REACT_APP_EMAIL_SERVICE_ID,
-        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+        REACT_APP_EMAIL_SERVICE_ID,
+        REACT_APP_EMAIL_TEMPLATE_ID,
         form.current,
-        process.env.REACT_APP_EMAIL_USER_ID
+        REACT_APP_EMAIL_USER_ID
       )
       .then(
         (result) => {
@@ -37,50 +42,53 @@ export const ContactUs = () => {
 
   return (
     <Container>
-      <h1 style={{color: "#caf0f8", textDecoration: "underline"}}>Contact us</h1>
-    <Form dir="ltr" ref={form} onSubmit={sendEmail}>
-      <Label>Name:</Label>
-      <Input
-        type="text"
-        name="firstname"
-        style={{
-          fontSize: "1.2rem",
-          width: "75%",
-          marginBottom: "0.7rem",
-        }}
-      />
-      <Label>Email:</Label>
-      <Input
-        type="email"
-        name="email"
-        style={{
-          fontSize: "1.2rem",
-          width: "75%",
-          marginBottom: "0.7rem",
-        }}
-      />
-      <Label>Message:</Label>
-      <Message
-        name="message"
-        style={{
-          fontSize: "1.2rem",
-          width: "75%",
-          height: "200px",
-          marginBottom: "15px",
-        }}
-      />
-      <Input
-        type="submit"
-        value="Send"
-        style={{
-          fontSize: "1.4rem",
-          width: "75%",
-          cursor: "pointer",
-          color: "royalblue",
-          fontWeight: "bold",
-        }}
-      />
-    </Form></Container>
+      <h1 style={{ color: "#caf0f8", textDecoration: "underline" }}>
+        Contact us
+      </h1>
+      <Form dir="ltr" ref={form} onSubmit={sendEmail}>
+        <Label>Name:</Label>
+        <Input
+          type="text"
+          name="firstname"
+          style={{
+            fontSize: "1.2rem",
+            width: "75%",
+            marginBottom: "0.7rem",
+          }}
+        />
+        <Label>Email:</Label>
+        <Input
+          type="email"
+          name="email"
+          style={{
+            fontSize: "1.2rem",
+            width: "75%",
+            marginBottom: "0.7rem",
+          }}
+        />
+        <Label>Message:</Label>
+        <Message
+          name="message"
+          style={{
+            fontSize: "1.2rem",
+            width: "75%",
+            height: "200px",
+            marginBottom: "15px",
+          }}
+        />
+        <Input
+          type="submit"
+          value="Send"
+          style={{
+            fontSize: "1.4rem",
+            width: "75%",
+            cursor: "pointer",
+            color: "royalblue",
+            fontWeight: "bold",
+          }}
+        />
+      </Form>
+    </Container>
   );
 };
 
@@ -95,7 +103,7 @@ const Container = styled.div`
     margin-left: 0;
     border: none;
   }
-`
+`;
 
 const Form = styled.form`
   width: 100%;
