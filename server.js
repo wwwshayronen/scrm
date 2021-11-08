@@ -10,7 +10,11 @@ require("dotenv").config();
 
 let setDBUri = process.env.URI;
 // enable all cors requests
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://easypeasycrm.herokuapp.com/"],
+  })
+);
 
 const customers = require("./api/routes/customers");
 const leads = require("./api/routes/leads");

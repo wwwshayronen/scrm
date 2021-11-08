@@ -35,13 +35,14 @@ const TableOfCustomers = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:5000/api/customers")
+      await fetch(`${window.location.origin}/api/customers`)
         .then((res) => res.json())
         .then((data) => setCustomers(data));
     }
     fetchData();
   }, []);
 
+  // Modal to look at customer info
   const openModalWithCustomerContactInfo = (name, record) => {
     console.log("name: ", name, "record: ", record);
     const customerInfo = customers.filter(
@@ -118,7 +119,10 @@ const TableOfCustomers = () => {
       key: "action",
       render: (text, record) => (
         <Space size="middle">
-          <a onClick={() => handleDeleteCustomer(record._id)}>Delete</a>
+          {
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <a onClick={() => handleDeleteCustomer(record._id)}>Delete</a>
+          }
         </Space>
       ),
     },
@@ -149,7 +153,7 @@ const TableOfCustomers = () => {
   const handleDeleteCustomer = async (customerID) => {
     console.log("cust id: ", customerID);
     try {
-      await fetch(`http://localhost:5000/api/customers/delete/${customerID}`, {
+      await fetch(`${window.location.origin}/api/customers/delete/${customerID}`, {
         method: "DELETE",
       });
       console.log(

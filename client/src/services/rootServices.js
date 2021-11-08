@@ -1,5 +1,5 @@
 import { message, Button } from 'antd';
-const API_URL = "http://localhost:5000";
+const API_URL = window.location.origin;
 const headers = { "Content-Type": "application/json" };
 
 const info = () => {
