@@ -2,11 +2,6 @@ import React, { useRef } from "react";
 import { message, Input } from "antd";
 import styled from "styled-components";
 import emailjs from "emailjs-com";
-import {
-  REACT_APP_EMAIL_SERVICE_ID,
-  REACT_APP_EMAIL_TEMPLATE_ID,
-  REACT_APP_EMAIL_USER_ID,
-} from "../../keys";
 require("dotenv").config();
 
 export const ContactUs = () => {
@@ -25,10 +20,10 @@ export const ContactUs = () => {
 
     emailjs
       .sendForm(
-        REACT_APP_EMAIL_SERVICE_ID,
-        REACT_APP_EMAIL_TEMPLATE_ID,
-        form.current,
-        REACT_APP_EMAIL_USER_ID
+        process.env.REACT_APP_EMAIL_SERVICE_ID,
+        process.env.REACT_APP_EMAIL_TEMPLATE_ID,
+        process.env.form.current,
+        process.env.REACT_APP_EMAIL_USER_ID
       )
       .then(
         (result) => {
