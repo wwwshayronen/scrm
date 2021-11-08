@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "scrm",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "nodemon server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm run start --prefix mappinapp",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
