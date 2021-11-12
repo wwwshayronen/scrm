@@ -1,5 +1,6 @@
-import { message, Button } from 'antd';
-const API_URL = window.location.origin;
+import { message } from 'antd';
+// const API_URL = window.location.origin; replace with under row before production
+const API_URL = 'http://localhost:5000';
 const headers = { "Content-Type": "application/json" };
 
 const info = () => {

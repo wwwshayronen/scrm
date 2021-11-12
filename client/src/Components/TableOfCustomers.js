@@ -3,31 +3,11 @@ import { Table, Tag, Space, Modal, Button } from "antd";
 
 import Total from "./Total";
 
-const ReachableContext = React.createContext();
-const UnreachableContext = React.createContext();
-
-const config = {
-  title: "Use Hook!",
-  content: (
-    <>
-      <ReachableContext.Consumer>
-        {(name) => `Reachable: ${name}!`}
-      </ReachableContext.Consumer>
-      <br />
-      <UnreachableContext.Consumer>
-        {(name) => `Unreachable: ${name}!`}
-      </UnreachableContext.Consumer>
-    </>
-  ),
-};
-
 const TableOfCustomers = () => {
-  const [modal, contextHolder] = Modal.useModal();
   const [customers, setCustomers] = useState();
   const [color, setColor] = useState("green");
   const [status, setStatus] = useState("פעיל");
   const [loading, setLoading] = useState(true);
-  const [userDeatilsName, setUserDeatilsName] = useState("shay");
 
   useEffect(() => {
     console.log("customers: ", customers);

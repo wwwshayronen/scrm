@@ -3,14 +3,19 @@ import "@lourenci/react-kanban/dist/styles.css";
 import "./board-style-customization.css";
 import { Button, Modal, Input } from "antd";
 import Board from "react-trello";
-import { add, getData, editLead, deleteLead } from "../../../services/rootServices";
-import { useAuth0 } from "@auth0/auth0-react";
+import {
+  add,
+  getData,
+  editLead,
+  deleteLead,
+} from "../../../services/rootServices";
+import e from "cors";
 
 const DATA = {
   lanes: [
     {
-      id: "applicants",
-      title: "Applicants",
+      id: "leads",
+      title: "Leads",
       style: { width: 280 },
       cards: [
         {
@@ -21,8 +26,14 @@ const DATA = {
       ],
     },
     {
-      id: "interviewed",
-      title: "Interviewed",
+      id: "ongoing",
+      title: "Ongoing",
+      style: { width: 280 },
+      cards: [],
+    },
+    {
+      id: "closedDeal",
+      title: "Closed Deal",
       style: { width: 280 },
       cards: [],
     },
@@ -51,12 +62,19 @@ export default function LedasBoard({ user }) {
   const [isUserAddedLead, setIsUserAddedLead] = useState(false);
   const [laneId, setLaneId] = useState("");
   const [draggedCard, setDraggedCard] = useState({});
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState(DATA);
   const [isLoading, setIsLoading] = useState(true);
+  const [cards, setCards] = useState([
+    {
+      leads: [],
+      ongoing: [],
+      closedDeal: [],
+    },
+  ]);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
-    console.log(`data: ${JSON.stringify(data)}`);
+    console.log(`data changed!: ${JSON.stringify(data)}`);
   }, [data]);
 
   const openModal = (cardId, laneId) => {
@@ -79,36 +97,90 @@ export default function LedasBoard({ user }) {
             `map over response data: ${data.map((lead) => lead.phoneNumber)}`
           );
           console.log(`data from server: ${JSON.stringify(data)}`);
-          const arrangeData = {
-            lanes: [
-              {
-                id: "Leads",
-                title: "Leads",
-                cards: data.map((lead) => ({
-                  id: lead._id || "",
-                  title: lead.name || "",
-                  // description: lead.description || "no description",
-                  label: "",
-                  description: (
-                    <>
-                      <p>name: {lead.name}</p>
-                      <p>Phone number: {lead.phoneNumber}</p>
-                      <p>Email: {lead.email}</p>
-                      <p>{lead.notes}</p>
-                    </>
+          let arrangeData;
+
+          if (data) {
+            console.log(
+              "data.map(lead => lead) : ",
+              data.map((lead) => lead)
+            );
+            arrangeData = {
+              lanes: [
+                {
+                  id: 0,
+                  title: "Leads",
+                  style: { width: 280 },
+                  cards: data.map(
+                    (lead) =>
+                      lead.lane === 0 && {
+                        id: lead._id || "",
+                        title: lead.name || "",
+                        // description: lead.description || "no description",
+                        label: "",
+                        description: (
+                          <>
+                            <p>name: {lead.name}</p>
+                            <p>Phone number: {lead.phoneNumber}</p>
+                            <p>Email: {lead.email}</p>
+                            <p>{lead.notes}</p>
+                          </>
+                        ),
+                        draggable: true,
+                      }
                   ),
-                })),
-              },
-              {
-                id: "lane2",
-                title: "Completed",
-                label: "0/0",
-                cards: [],
-              },
-            ],
-          };
+                },
+                {
+                  id: 0,
+                  title: "Ongoing",
+                  style: { width: 280 },
+                  cards: data.map(
+                    (lead) =>
+                      lead.lane === 0 && {
+                        id: lead._id || "",
+                        title: lead.name || "",
+                        // description: lead.description || "no description",
+                        label: "",
+                        description: (
+                          <>
+                            <p>name: {lead.name}</p>
+                            <p>Phone number: {lead.phoneNumber}</p>
+                            <p>Email: {lead.email}</p>
+                            <p>{lead.notes}</p>
+                          </>
+                        ),
+                        draggable: true,
+                      }
+                  ),
+                },
+                {
+                  id: 0,
+                  title: "Closed Deal",
+                  style: { width: 280 },
+                  cards: data.map(
+                    (lead) =>
+                      lead.lane === 0 && {
+                        id: lead._id || "",
+                        title: lead.name || "",
+                        // description: lead.description || "no description",
+                        label: "",
+                        description: (
+                          <>
+                            <p>name: {lead.name}</p>
+                            <p>Phone number: {lead.phoneNumber}</p>
+                            <p>Email: {lead.email}</p>
+                            <p>{lead.notes}</p>
+                          </>
+                        ),
+                        draggable: true,
+                      }
+                  ),
+                },
+              ],
+            };
+          }
+
           console.log(`arrangedData: ${JSON.stringify(arrangeData)}`);
-          setData(() => arrangeData);
+          setData(() => (arrangeData ? arrangeData : DATA));
           setIsLoading(false);
         });
     }
@@ -124,11 +196,12 @@ export default function LedasBoard({ user }) {
         phoneNumber: phoneNumber,
         email: email,
         notes: notes,
+        lane: laneId,
         userID: user.sub,
       };
       // send new lead to server
       add(newLead);
-      console.log("request sent!");
+      console.log("request sent with that data: ", data);
       // reset state
       setName("");
       setEmail("");
@@ -136,7 +209,16 @@ export default function LedasBoard({ user }) {
       setNotes("");
       setIsUserAddedLead(false);
     }
-  }, [email, isUserAddedLead, name, notes, phoneNumber, user.sub]);
+  }, [
+    data,
+    email,
+    isUserAddedLead,
+    laneId,
+    name,
+    notes,
+    phoneNumber,
+    user.sub,
+  ]);
 
   // DELETE request to the server when user deleting lead
   // useEffect(() => {
@@ -155,6 +237,7 @@ export default function LedasBoard({ user }) {
 
   const handleAddLeadOnClick = () => {
     const isRequiredFieldsFilled = name && (email || phoneNumber);
+    setLaneId("leads");
     if (!isRequiredFieldsFilled) {
       return alert("Please fill lead name, phone number or email");
     } else {
@@ -165,14 +248,13 @@ export default function LedasBoard({ user }) {
         title: name,
         description: (
           <>
-            <p>name: {name}</p>
             <p>Phone number: {phoneNumber}</p>
             <p>Email: {email}</p>
             <p>{notes}</p>
           </>
         ),
         label: "30 mins",
-        lane: "lane1",
+        lane: "leads",
         draggable: true,
       };
       console.log(
@@ -181,6 +263,7 @@ export default function LedasBoard({ user }) {
       setData(newState);
       setIsUserAddedLead(true);
       setVisible(false);
+      setIsLoading(false);
     }
   };
 
@@ -198,11 +281,15 @@ export default function LedasBoard({ user }) {
     setDraggedCard(findLead);
   };
 
-  const handleDataChange = (newData) => {
-    setData(() => newData);
-    setIsLoading(true);
-    setIsLoading(false);
-  };
+  // const handleDataChange = (newData) => {
+  //   const arrangeNewData = {
+  //     lanesData: newData,
+  //     userID: user.sub,
+  //     email: user.email,
+  //     name: user.name,
+  //   };
+  //   add(arrangeNewData);
+  // };
 
   const arrangeDataToFitSchema = (changedData) => {
     const iterate = Object.keys(changedData).map((key) => changedData[key]);
@@ -215,21 +302,30 @@ export default function LedasBoard({ user }) {
 
   // TODO: delete new cards from ccurrent data state (otherwise user cannot add new card)
   const handleCardDelete = (cardId, laneId) => {
-    console.log(`cardId, laneId: ${cardId + " " + laneId}`);
-    deleteLead(cardId)
+    // filter lane cards and remove clicked card
+    const filteringCards = data.lanes[laneId].cards.filter((card) => {
+      return card.id !== cardId;
+    });
+    // update state by specific lane cards 
+    setData((prevState) => {
+      prevState.lanes[laneId].cards = filteringCards;
+      return prevState;
+    });
+    // TODO: handle delete functionality in server
+    // send delete request to server to delete card from DB
+    deleteLead(cardId);
   };
 
   return (
     <div>
       <Button onClick={openModal}>Add lead</Button>
-      {/* check if data recived from server. if so, render Board component.*/}
       {!isLoading && (
         <Board
           data={data}
           style={{ backgroundColor: "#FDFFFC" }}
           // onCardAdd={openModal}
           // TODO: HANDLE DATA CHANGE BY SENDING TO SERVER
-          onDataChange={() => setIsLoading(false)}
+          // onDataChange={handleDataChange}
           onCardMoveAcrossLanes={handleOnCardMoveAcrossLanes}
           onCardDelete={handleCardDelete}
         />
