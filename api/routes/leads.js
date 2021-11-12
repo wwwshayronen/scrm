@@ -7,8 +7,8 @@ const Lead = require("../../models/Lead");
 // get all leads
 router.get("/", async (req, res) => {
   try {
-    const leads = await Lead.find().sort({ data: -1 });
-    console.log(leads);
+    const leads = await Lead.find().sort({ date: -1 });
+    console.log("leads: ", leads);
     res.send(leads);
   } catch (error) {
     console.log(
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 // add new lead to DB
 router.post("/add", (req, res) => {
   try {
-    console.log("request was received by the server:", req.body);
+    console.log("request was received by the client:", req.body);
     if (req.body.name && req.body.phoneNumber) {
       const newLead = new Lead({
         name: req.body.name,
@@ -56,17 +56,6 @@ router.delete("/delete/:id", (req, res) => {
 // route edit api/leads/edit/id
 // edit lead
 router.put("/edit/:id", async (req, res) => {
-  // Lead.findOneAndUpdate({ _id: id }, lead)
-  //   .then(() => {
-  //     res.status(201).json({
-  //       message: "Lead updated successfully!",
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     res.status(400).json({
-  //       error: error,
-  //     });
-  //   });
   try {
     const id = req.body._id;
     console.log(`user id: ${id}, user name: ${req.body.name}`);
