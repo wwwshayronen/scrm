@@ -8,10 +8,10 @@ require("dotenv").config();
 
 ReactDOM.render(
   <Auth0Provider
-    // domain={process.env.REACT_APP_DOMAIN}
-    // clientId={process.env.REACT_APP_CLIENT_ID}
-    domain={"dev-4yd2ovr5.auth0.com"}
-    clientId={"gFppPPBkmXOlpoUk1jIXN51GnX7cM2DR"}
+    domain={process.env.REACT_APP_DOMAIN}
+    clientId={process.env.REACT_APP_CLIENT_ID}
+    // domain={"dev-4yd2ovr5.auth0.com"}
+    // clientId={"gFppPPBkmXOlpoUk1jIXN51GnX7cM2DR"}
     redirectUri={window.location.origin}
   >
     <App />
