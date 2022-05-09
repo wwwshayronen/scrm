@@ -24,10 +24,13 @@ app.use(bodyParser.json());
 
 // connect to mongodb
 mongoose
-  .connect(`mongodb+srv://shay:h6UKXD4muruNl8N3@monez-cluster.dvbt7.mongodb.net/scrm?retryWrites=true&w=majority`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    `mongodb+srv://shay:h6UKXD4muruNl8N3@monez-cluster.dvbt7.mongodb.net/scrm?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("MongoDB connected"))
   .catch((err) =>
     console.log("Error when trying to connect to mongodb: ", err)

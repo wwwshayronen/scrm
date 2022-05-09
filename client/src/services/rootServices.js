@@ -14,7 +14,11 @@ const add = (data) =>
     body: JSON.stringify(data),
   });
 
-const getData = (routeName) => fetch(`${API_URL}/${routeName}`);
+const getData = async (routeName) => {
+  console.log(`route: ${routeName}`)
+  const res = await fetch(`${API_URL}/${routeName}`)
+  return res;
+};
 
 const editLead = (lead, routeName) =>
   fetch(`${API_URL}/${routeName}`, {

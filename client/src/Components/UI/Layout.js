@@ -5,6 +5,7 @@ import { FolderOutlined } from "@ant-design/icons";
 import HomePage from "../landingPage/HomePage";
 import GithubStarButton from "../UI/GithubStarButton";
 import FooterUI from "./FooterUI";
+import VisitorHeader from "./VisitorHeader";
 
 const { Header, Content } = Layout;
 
@@ -12,8 +13,8 @@ const LayoutComponent = () => {
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Header
+    <Layout style={{ minHeight: "100vh", backgroundColor: "white" }}>
+      <VisitorHeader
         className="site-layout-background"
         style={{
           padding: 0,
@@ -40,13 +41,14 @@ const LayoutComponent = () => {
               color: "rgb(63, 61, 86)",
               border: "1px solid rgb(108, 99, 255)",
               boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
+              borderRadius: "20px"
             }}
             onClick={() => loginWithRedirect()}
           >
-            Login/sign up
+            Login
           </Button>
         </div>
-      </Header>
+      </VisitorHeader>
       <Content style={{ margin: "0 16px" }}>
         <div
           className="site-layout-background"

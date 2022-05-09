@@ -27,3 +27,7 @@ input[type="number"] {
   transition: #f1f9ff 0.3s;
   background-color: #f1f9ff;
 }
+
+.ant-drawer-body {
+  margin-left: 18rem;
+}

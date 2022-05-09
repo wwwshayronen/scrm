@@ -18,30 +18,34 @@ export const ContactUs = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
+    try {
+      emailjs
       .sendForm(
         process.env.REACT_APP_EMAIL_SERVICE_ID,
         process.env.REACT_APP_EMAIL_TEMPLATE_ID,
-        process.env.form.current,
+        form.current,
         process.env.REACT_APP_EMAIL_USER_ID
       )
       .then(
         (result) => {
+          console.log(`res: ${result}`)
           successMessage();
         },
-        (error) => {
-          errorMessage();
-        }
       );
+    } catch (error) {
+      errorMessage();
+    }
+
+    
   };
 
   return (
     <Container>
       <h1 style={{ color: "#caf0f8", textDecoration: "underline" }}>
-        Contact us
-      </h1>
+        Contact us{" "}
+      </h1>{" "}
       <Form dir="ltr" ref={form} onSubmit={sendEmail}>
-        <Label>Name:</Label>
+        <Label> Name: </Label>{" "}
         <Input
           type="text"
           name="firstname"
@@ -50,8 +54,8 @@ export const ContactUs = () => {
             width: "75%",
             marginBottom: "0.7rem",
           }}
-        />
-        <Label>Email:</Label>
+        />{" "}
+        <Label> Email: </Label>{" "}
         <Input
           type="email"
           name="email"
@@ -60,8 +64,8 @@ export const ContactUs = () => {
             width: "75%",
             marginBottom: "0.7rem",
           }}
-        />
-        <Label>Message:</Label>
+        />{" "}
+        <Label> Message: </Label>{" "}
         <Message
           name="message"
           style={{
@@ -70,7 +74,7 @@ export const ContactUs = () => {
             height: "200px",
             marginBottom: "15px",
           }}
-        />
+        />{" "}
         <Input
           type="submit"
           value="Send"
@@ -81,8 +85,8 @@ export const ContactUs = () => {
             color: "royalblue",
             fontWeight: "bold",
           }}
-        />
-      </Form>
+        />{" "}
+      </Form>{" "}
     </Container>
   );
 };

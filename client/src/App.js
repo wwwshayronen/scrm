@@ -11,6 +11,7 @@ import LayoutComponent from "./Components/UI/Layout";
 import ProfileLayout from "./Components/UI/ProfileLayout";
 import AddCustomer from "./Components/AddCustomer";
 import TableOfCustomers from "./Components/TableOfCustomers";
+import AccountSetup from "./Components/regestrsation/AccountSetup";
 
 export default function App() {
   const { isLoading, isAuthenticated } = useAuth0();
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/profile" component={ProfileLayout} />
         <Route path="/profile/add" component={AddCustomer} />
         <Route path="/profile/my-customers" component={TableOfCustomers} />
+        <Route path="/regestrsation" component={AccountSetup} />
 
       </Switch>
     </Router>
