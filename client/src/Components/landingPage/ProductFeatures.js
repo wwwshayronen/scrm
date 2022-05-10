@@ -31,7 +31,6 @@ export default function ProductFeatures() {
 
 const ProductFeaturesList = styled.ul`
   text-align: left;
-  width: 50%;
   list-style: none;
   margin-top: 80px;
   font-size: 1.3rem;

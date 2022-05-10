@@ -11,9 +11,9 @@ require("dotenv").config();
 let setDBUri = process.env.URI;
 // enable all cors requests
 app.use(
-  cors({
-    origin: ["http://localhost:3000", "https://easypeasycrm.herokuapp.com/"],
-  })
+    cors({
+        origin: ["http://localhost:3000", "https://easypeasycrm.herokuapp.com/"],
+    })
 );
 
 const customers = require("./api/routes/customers");
@@ -24,17 +24,16 @@ app.use(bodyParser.json());
 
 // connect to mongodb
 mongoose
-  .connect(
-    `mongodb+srv://shay:h6UKXD4muruNl8N3@monez-cluster.dvbt7.mongodb.net/scrm?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) =>
-    console.log("Error when trying to connect to mongodb: ", err)
-  );
+    .connect(
+        `mongodb+srv://shay:h6UKXD4muruNl8N3@monez-cluster.dvbt7.mongodb.net/scrm?retryWrites=true&w=majority`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }
+    )
+    .then(() => console.log("MongoDB connected"))
+    .catch((err) =>
+        console.log("Error when trying to connect to mongodb: ", err)
+    );
 
 // use routes
 app.use("/api/customers", customers);
@@ -43,7 +42,7 @@ app.use("/api/leads", leads);
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
 });
 
 const PORT = process.env.PORT || 5000;

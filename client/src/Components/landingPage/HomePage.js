@@ -18,7 +18,6 @@ const HomePage = () => {
   return (
     <FlexContainer>
       <Card cover={<OrganizeWoman />}>
-
         <ProductIntro>
           {" "}
           <ProductDesription dir="ltr">
@@ -44,7 +43,7 @@ const HomePage = () => {
           </ProductDesription>
         </ProductIntro>
       </Card>
-      <ProductFeatures />
+      <Card style={{ border: " none" }} cover={<ProductFeatures />}></Card>
     </FlexContainer>
   );
 };
