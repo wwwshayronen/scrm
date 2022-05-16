@@ -20,6 +20,7 @@ export default function Card({ svg, svgAlt, cardContent }) {
 
 const ListItem = styled.li`
   margin: 0 auto;
+  font-size: 1.2rem;
 `;
 
 const Image = styled.img`

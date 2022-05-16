@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 
 import ProductFeatures from "./ProductFeatures";
 import OrganizeWoman from "../OrganizeWoman";
+import Text from "antd/lib/typography/Text";
 
 const HomePage = () => {
   const { loginWithRedirect } = useAuth0();
@@ -20,11 +21,12 @@ const HomePage = () => {
       <Card cover={<OrganizeWoman />}>
         <ProductIntro>
           {" "}
+          
           <ProductDesription dir="ltr">
-            <p>
+            <Text>
               SCRM, the first buissness builder platform. Conversion landing
               page? marketing? leads mangment? We got you.
-            </p>
+            </Text>
             <Button
               style={{
                 backgroundColor: "#4169e1",
@@ -33,8 +35,8 @@ const HomePage = () => {
                 letterSpacing: "1.2px",
                 borderRadius: "20px",
                 marginTop: "10px",
-                width: "30%",
                 height: "37px",
+                display:"block",
               }}
               onClick={() => initAccountCustomazation()}
             >
@@ -64,9 +66,8 @@ const ProductIntro = styled.div`
 const ProductDesription = styled.div`
   font-size: 1.3rem;
   font-weight: 700;
-  text-align: "left";
   color: rgb(63, 61, 86);
-  width: 50%;
+  width: 30%;
   @media (max-width: 768px) {
     padding-right: 10px;
     padding-left: 24px;
